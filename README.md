@@ -14,7 +14,7 @@
 
 - [x] Add toggle complete functionality
 - [x] Add categories to your todos, and the ability to filter what is shown by category.
-- [ ] Add priority and the ability to add a todo with priority and have it render in the right place immediately.
+- [x] Add priority and the ability to add a todo with priority and have it render in the right place immediately.
 - [ ] Or add a due date and have the app programatically tell you how much time you have left
 - [ ] Allow assigning & rendering of sub-tasks to the todo.
 - [ ] Anything else you fancy
