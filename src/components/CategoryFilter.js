@@ -6,6 +6,7 @@ class CategoryFilter extends React.Component {
       <form onSubmit={this.filterCategory}>
         <label htmlFor="chooseCategory">Filter by category: </label>
         <select id="chooseCategory">
+          <option value="all">All</option>
           <option value="work">Work</option>
           <option value="wellness">Wellness</option>
           <option value="finance">Finance</option>

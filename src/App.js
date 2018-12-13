@@ -8,15 +8,27 @@ import './App.css';
 class App extends Component {
   state = {
     tasks: [
-      { text: 'wake up', isComplete: false, category: 'wellness' },
-      { text: 'go back to sleep', isComplete: true, category: 'wellness' },
-      { text: 'count money', isComplete: false, category: 'finance' },
+      { text: 'wake up', isComplete: true, category: 'wellness' },
+      { text: 'go back to sleep', isComplete: false, category: 'wellness' },
+      {
+        text: 'count that big pile of money',
+        isComplete: false,
+        category: 'finance',
+      },
     ],
+    currentFilter: 'all',
   };
 
   render() {
     console.log('rendering...');
-    const tasks = this.state.tasks;
+
+    const tasks =
+      this.state.currentFilter === 'all'
+        ? this.state.tasks
+        : this.state.tasks.filter(
+            task => task.category === this.state.currentFilter,
+          );
+
     return (
       <div className="App">
         <Header />
@@ -57,20 +69,17 @@ class App extends Component {
   };
 
   addTask = (taskToAdd, category) => {
-    this.setState(
-      state => ({
-        tasks: [
-          ...state.tasks,
-          { text: taskToAdd, isComplete: false, category: category },
-        ],
-      }),
-      () => console.log(this.state.tasks),
-    );
+    this.setState(state => ({
+      tasks: [
+        ...state.tasks,
+        { text: taskToAdd, isComplete: false, category: category },
+      ],
+    }));
   };
 
   filterTasks = category => {
     this.setState(state => ({
-      tasks: state.tasks.filter(task => task.category === category),
+      currentFilter: category,
     }));
   };
 }
