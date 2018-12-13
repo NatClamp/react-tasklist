@@ -17,12 +17,16 @@ class TaskAdder extends React.Component {
           onChange={this.handleChange}
           required
         />
+
         <label htmlFor="addCategory">Add a category</label>
         <select id="addCategory" required>
           <option value="work">Work</option>
           <option value="wellness">Wellness</option>
           <option value="finance">Finance</option>
         </select>
+
+        <label htmlFor="priority">Priority?</label>
+        <input id="priority" type="checkbox" name="priority" value="priority" />
         <button>Add Me!</button>
       </form>
     );
@@ -36,7 +40,11 @@ class TaskAdder extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addTask(this.state.newTask, event.target.addCategory.value);
+    this.props.addTask(
+      this.state.newTask,
+      event.target.addCategory.value,
+      event.target.priority.checked,
+    );
     this.setState({
       newTask: '',
     });

@@ -8,12 +8,23 @@ import './App.css';
 class App extends Component {
   state = {
     tasks: [
-      { text: 'wake up', isComplete: true, category: 'wellness' },
-      { text: 'go back to sleep', isComplete: false, category: 'wellness' },
       {
-        text: 'count that big pile of money',
+        text: 'bake cake',
+        isComplete: false,
+        category: 'wellness',
+        priority: true,
+      },
+      {
+        text: 'count money',
         isComplete: false,
         category: 'finance',
+        priority: false,
+      },
+      {
+        text: 'get a job',
+        isComplete: false,
+        category: 'work',
+        priority: true,
       },
     ],
     currentFilter: 'all',
@@ -68,13 +79,33 @@ class App extends Component {
     }));
   };
 
-  addTask = (taskToAdd, category) => {
-    this.setState(state => ({
-      tasks: [
-        ...state.tasks,
-        { text: taskToAdd, isComplete: false, category: category },
-      ],
-    }));
+  // work out how to add prioritised tasks to the beginning of the
+  addTask = (taskToAdd, category, priority) => {
+    if (priority === false) {
+      this.setState(state => ({
+        tasks: [
+          ...state.tasks,
+          {
+            text: taskToAdd,
+            isComplete: false,
+            category: category,
+            priority: priority,
+          },
+        ],
+      }));
+    } else {
+      this.setState(state => ({
+        tasks: [
+          {
+            text: taskToAdd,
+            isComplete: false,
+            category: category,
+            priority: priority,
+          },
+          ...state.tasks,
+        ],
+      }));
+    }
   };
 
   filterTasks = category => {
